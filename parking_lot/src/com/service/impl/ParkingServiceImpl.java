@@ -75,6 +75,7 @@ public class ParkingServiceImpl implements ParkingService
 		            System.out.println();
 		        } else if (this.map1.size() > 0) {
 		        	//System.out.println("else if map1 is greater than zero");
+		        	try {
 		        	String slotNo = this.map2.get(regNo);
 		        	//System.out.println("hmmmmm slot number is  "+slotNo);
 		            Car carToLeave = this.map1.get(slotNo);
@@ -88,7 +89,12 @@ public class ParkingServiceImpl implements ParkingService
 		                System.out.println("Registration number " + regNo + " not Found");
 		                System.out.println();
 		            }
-		        } else {
+		        }
+		        	catch (Exception e) {
+	                System.out.println(e);
+		        		}
+		        }
+		        	else {
 		            System.out.println("Parking lot is empty");
 		            System.out.println();
 		        }
@@ -103,12 +109,17 @@ public class ParkingServiceImpl implements ParkingService
             // Print the current status.
             System.out.println("Slot No.\tRegistration No.");
             Car car;
+            try {
             for (int i = 1; i <= this.MAX_SIZE; i++) {
                 String key = Integer.toString(i);
                 if (this.map1.containsKey(key)) {
                     car = this.map1.get(key);
                     System.out.println(i + "\t" + car.getRegNo() );
+                   }
                 }
+            }
+            catch (Exception e) {
+                System.out.println(e);
             }
             System.out.println();
         } else {
