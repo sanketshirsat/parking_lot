@@ -96,5 +96,24 @@ public class ParkingServiceImpl implements ParkingService
 	
 	public void status() throws Exception
 	{
+		if (this.MAX_SIZE == 0) {
+            System.out.println("Sorry, parking lot is not created");
+            System.out.println();
+        } else if (this.map1.size() > 0) {
+            // Print the current status.
+            System.out.println("Slot No.\tRegistration No.");
+            Car car;
+            for (int i = 1; i <= this.MAX_SIZE; i++) {
+                String key = Integer.toString(i);
+                if (this.map1.containsKey(key)) {
+                    car = this.map1.get(key);
+                    System.out.println(i + "\t" + car.getRegNo() );
+                }
+            }
+            System.out.println();
+        } else {
+            System.out.println("Parking lot is empty");
+            System.out.println();
+        }
 	}
 }
