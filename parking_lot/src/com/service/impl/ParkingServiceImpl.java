@@ -66,7 +66,32 @@ public class ParkingServiceImpl implements ParkingService
 	
 	public void leave(String regNo, String hours) throws Exception
 	{
-		
+		//initial payment
+				int amount=10;
+				//System.out.println("In leaving"+regNo);
+		    	amount=amount+(Integer.parseInt(hours)-2)*10;
+		        if (this.MAX_SIZE == 0) {
+		            System.out.println("Sorry, parking lot is not created");
+		            System.out.println();
+		        } else if (this.map1.size() > 0) {
+		        	//System.out.println("else if map1 is greater than zero");
+		        	String slotNo = this.map2.get(regNo);
+		        	//System.out.println("hmmmmm slot number is  "+slotNo);
+		            Car carToLeave = this.map1.get(slotNo);
+		            if (carToLeave != null) {
+		                this.map1.remove(slotNo);
+		                this.map2.remove(carToLeave.getRegNo());
+		                this.availableSlotList.add(Integer.parseInt(slotNo));
+		                System.out.println("Registration number "+regNo+" with Slot Number "+slotNo+" is free with Charge "+amount);
+		                System.out.println();
+		            } else {
+		                System.out.println("Registration number " + regNo + " not Found");
+		                System.out.println();
+		            }
+		        } else {
+		            System.out.println("Parking lot is empty");
+		            System.out.println();
+		        }
 	}
 	
 	public void status() throws Exception
