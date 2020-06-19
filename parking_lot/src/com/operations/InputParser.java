@@ -5,19 +5,27 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
-
-import com.service.ParkingService;
-import com.service.impl.ParkingServiceImpl;
 
 public class InputParser {
 
     public InputParser() {
-        
     }
     public void parseTextInput(String inputString) {
-       
+        // Split the input string to get command and input value
+        String[] inputs = inputString.split(" ");
+        switch (inputs.length) {
+            case 1:
+                System.out.println("Inside Status ...");
+                break;
+            case 2:
+            	System.out.println("Inside park");
+                break;
+            case 3:
+            	System.out.println("Inside leave");
+                break;
+            default:
+                System.out.println("Invalid input.");
+        }
     }
     public void parseFileInput(String filePath) {
         // Assuming input to be a valid file path.
