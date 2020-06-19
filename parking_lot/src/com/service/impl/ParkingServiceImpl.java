@@ -35,13 +35,33 @@ public class ParkingServiceImpl implements ParkingService
         for (int i=1; i<= this.MAX_SIZE; i++) {
             availableSlotList.add(i);
         }
-        
+        this.map1 = new HashMap<String, Car>();
+        this.map2 = new HashMap<String, String>();
+       // this.map3 = new HashMap<String, ArrayList<String>>();
+        this.map4 = new HashMap<String, Integer>();
         System.out.println("Created parking lot with " + lotCount + " slots");
         System.out.println();
     }
 	
 	public void park(String regNo) throws Exception
 	{
+		//System.out.println("In park ...");
+        if (this.MAX_SIZE == 0) {
+            System.out.println("Sorry, parking lot is not created");
+            System.out.println();
+        } else if (this.map1.size() == this.MAX_SIZE) {
+            System.out.println("Sorry, parking lot is full");
+            System.out.println();
+        } else {
+            Collections.sort(availableSlotList);
+            String slot = availableSlotList.get(0).toString();
+            Car car = new Car(regNo);
+            this.map1.put(slot, car);
+            this.map2.put(regNo, slot);
+            System.out.println("Allocated slot number: " + slot);
+            System.out.println();
+            availableSlotList.remove(0);
+        }
 	}
 	
 	public void leave(String regNo, String hours) throws Exception
@@ -51,6 +71,5 @@ public class ParkingServiceImpl implements ParkingService
 	
 	public void status() throws Exception
 	{
-		
-    }
+	}
 }
